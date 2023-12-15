@@ -1,0 +1,34 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+void BresenhamLineDrawing(int x1, int y1, int x2, int y2)
+{
+	int newValue = 2 * (y2 - y1);
+	int slop_Err = newValue - (x2 - x1);
+	cout<<"Output: "<<endl<<endl;
+	for (int x = x1, y = y1; x <= x2; x++) {
+		cout << "(" << x << "," << y << ")\n";
+		slop_Err += newValue;
+		if (slop_Err >= 0) {
+			y++;
+			slop_Err -= 2 * (x2 - x1);
+		}
+	}
+}
+
+int main()
+{
+	int x1, y1 , x2 , y2;
+        cout<<"Enter the value for X0: ";
+	cin>>x1;
+	cout<<"Enter the value for y0: ";
+	cin>>y1;
+	cout<<"Enter the value for x1: ";
+	cin>>x2;
+	cout<<"Enter the value for y1: ";
+	cin>>y2;
+
+	BresenhamLineDrawing(x1, y1, x2, y2);
+	getch();
+
+}

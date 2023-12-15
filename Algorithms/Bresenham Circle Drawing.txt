@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <dos.h>
+#include <graphics.h>
+#include<conio.h>
+void CircleDrawing(int x_Coordinate, int y_Coordinate, int x, int y)
+{
+	putpixel(x_Coordinate+x, y_Coordinate+y, RED);
+	putpixel(x_Coordinate-x, y_Coordinate+y, RED);
+	putpixel(x_Coordinate+x, y_Coordinate-y, RED);
+	putpixel(x_Coordinate-x, y_Coordinate-y, RED);
+	putpixel(x_Coordinate+y, y_Coordinate+x, RED);
+	putpixel(x_Coordinate-y, y_Coordinate+x, RED);
+	putpixel(x_Coordinate+y, y_Coordinate-x, RED);
+	putpixel(x_Coordinate-y, y_Coordinate-x, RED);
+}
+void BresenhamCircle(int x_Coordinate, int y_Coordinate, int Radius)
+{
+	int x = 0, y = Radius;
+	int d = 3 - 2 * Radius;
+	CircleDrawing(x_Coordinate, y_Coordinate, x, y);
+	while (y >= x)
+	{
+
+		x++;
+		if (d > 0)
+		{
+			y--;
+			d = d + 4 * (x - y) + 10;
+		}
+		else
+			d = d + 4 * x + 6;
+		CircleDrawing(x_Coordinate, y_Coordinate, x, y);
+		delay(50);
+	}
+}
+
+int main()
+{
+	int x_Coordinate, y_Coordinate , Radius;
+	cout<<"Enter the value for x_Coordinate: ";
+	cin>>x_Coordinate;
+	cout<<"Enter the value for y_Coordinate: ";
+	cin>>y_Coordinate;
+	cout<<"Enter the value for Radius: ";
+	cin>>Radius;
+	int gd = DETECT, gm;
+	initgraph(&gd, &gm, "");
+	BresenhamCircle(x_Coordinate, y_Coordinate, Radius);
+        getch();
+}

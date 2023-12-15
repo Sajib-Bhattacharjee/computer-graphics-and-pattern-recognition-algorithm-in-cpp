@@ -1,0 +1,59 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+void midPointCircleDrawing(int x_Coordinate, int y_Coordinate, int Radius)
+{
+	int x = Radius, y = 0;
+	cout<<"Output: "<<endl;
+	cout << "(" << x + x_Coordinate << ", " << y + x_Coordinate << ") ";
+	if (Radius > 0)
+	{
+		cout << "(" << x + x_Coordinate << ", " << -y + y_Coordinate << ") ";
+		cout << "(" << y + x_Coordinate << ", " << x + y_Coordinate << ") ";
+		cout << "(" << -y + x_Coordinate << ", " << x + y_Coordinate << ")\n";
+	}
+
+	int Point = 1 - Radius;
+	while (x > y)
+	{
+		y++;
+
+		if (Point <= 0){
+            Point = Point + 2*y + 1;
+		}
+		else
+		{
+			x--;
+			Point = Point + 2*y - 2*x + 1;
+		}
+
+		if (x < y)
+			break;
+
+		cout << "(" << x + x_Coordinate << ", " << y + y_Coordinate << ") ";
+		cout << "(" << -x + x_Coordinate << ", " << y + y_Coordinate << ") ";
+		cout << "(" << x + x_Coordinate << ", " << -y + y_Coordinate << ") ";
+		cout << "(" << -x + x_Coordinate << ", " << -y + y_Coordinate << ")\n";
+
+		if (x != y)
+		{
+			cout << "(" << y + x_Coordinate << ", " << x + y_Coordinate << ") ";
+			cout << "(" << -y + x_Coordinate << ", " << x + y_Coordinate << ") ";
+			cout << "(" << y + x_Coordinate << ", " << -x + y_Coordinate << ") ";
+			cout << "(" << -y + x_Coordinate << ", " << -x + y_Coordinate << ")\n";
+		}
+	}
+}
+
+int main()
+{
+     int x_Coordinate,y_Coordinate,Radius;
+     cout<<"Enter the value for x_Coordinate: ";
+     cin>>x_Coordinate;
+     cout<<"Enter the value for y_Coordinate: ";
+     cin>>y_Coordinate;
+     cout<<"Enter the value for Radius: ";
+     cin>>Radius;
+	 midPointCircleDrawing(x_Coordinate, y_Coordinate, Radius);
+	 getch();
+}

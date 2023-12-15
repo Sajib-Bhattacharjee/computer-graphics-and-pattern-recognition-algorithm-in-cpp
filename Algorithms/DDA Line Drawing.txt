@@ -1,0 +1,61 @@
+#include <iostream>>
+#include<conio.h>
+#include<math.h>
+using namespace std;
+int RoundFunction(float number)
+{
+    if (number - (int)number < 0.5)
+    {
+        return (int)number;
+    }
+    else
+    {
+        return (int)(number + 1);
+    }
+
+}
+
+void DDALineDrawing(int x0, int y0, int x1, int y1)
+{
+
+    int dx = x1 - x0;
+    int dy = y1 - y0;
+    int maxCount;
+    if (abs(dx) > abs(dy))
+    {
+        maxCount = abs(dx);
+    }
+
+    else
+    {
+        maxCount = abs(dy);
+    }
+    float x_increment = (float)dx / maxCount;
+    float y_increment = (float)dy / maxCount;
+    float x = x0;
+    float y = y0;
+    cout<<"Output: "<<endl<<endl;
+    for (int i = 0; i < maxCount; i++)
+    {
+        cout << RoundFunction(x) << " " << RoundFunction(y) << "\n";
+        x += x_increment;
+        y += y_increment;
+
+    }
+}
+int main()
+{
+
+    int x0,y0, x1, y1;
+    cout<<"Enter the value for X0: ";
+    cin>>x0;
+    cout<<"Enter the value for y0: ";
+    cin>>y0;
+    cout<<"Enter the value for x1: ";
+    cin>>x1;
+    cout<<"Enter the value for y1: ";
+    cin>>y1;
+
+    DDALineDrawing(x0, y0, x1, y1);
+    getch();
+}
